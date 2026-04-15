@@ -4,6 +4,7 @@ from transformers import pipeline
 @st.cache_resource
 def load_summarizer():
     return pipeline("summarization", model="ARTeLab/mbart-summarization-fanpage")
+    #Sachin21112004/distilbart-news-summarizer
 summarizer = load_summarizer()
 # Streamlit UI
 st.title("📝 AI Text Summarizer")
@@ -18,7 +19,7 @@ if st.button("Summarize"):
         with st.spinner("Generating summary... ⏳"):
             summary = summarizer(long_text, max_length=max_length, 
                                  min_length=min_length, do_sample=False)
-            st.subheader("Summary:")
+            st.subheader("📌 Summary:")
             st.success(summary[0]['summary_text'])
     else:
-        st.warning(" Please enter some text to summarize.")
+        st.warning("⚠️ Please enter some text to summarize.")
